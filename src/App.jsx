@@ -1,32 +1,41 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  const arrName = ["Rayhan", "Asif", "Tuhin", "Touhid", "Risan"];
-
-  const myobj = [
-    { name: "Rayhan", age: 28 },
-    { name: "Asif", age: 27 },
-    { name: "Tuhin", age: 26 },
-    { name: "Touhid", age: 25 },
-  ];
   return (
     <div>
-      {/* {arrName.map((key) => (
-        <Print key={key} name={key}></Print>
-      ))} */}
-
-      {myobj.map((item) => {
-        return <Print name={item.name} age={item.age}></Print>;
-      })}
+      <GetUsers></GetUsers>
     </div>
   );
 }
 
-function Print(props) {
+function UserPrint(props) {
   return (
-    <div className="myclass">
-      <p>Name : {props.name}</p>
-      <p>Age : {props.age}</p>
+    <div style={{ border: "2px solid red", margin: "5px" }}>
+      <h3>{props.name}</h3>
+      <h4>{props.email}</h4>
+    </div>
+  );
+}
+
+function GetUsers() {
+  const [users, setUser] = useState([]);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.json())
+      .then((data) => setUser(data));
+  }, []);
+
+  return (
+    <div>
+      {users.map((user) => (
+        <UserPrint
+          key={user.name}
+          name={user.name}
+          email={user.email}
+        ></UserPrint>
+      ))}
     </div>
   );
 }
