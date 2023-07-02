@@ -1,12 +1,23 @@
 import "./App.css";
 
-const arrName = ["Rayhan", "Asif", "Tuhin", "Touhid", "Risan"];
-
 function App() {
+  const arrName = ["Rayhan", "Asif", "Tuhin", "Touhid", "Risan"];
+
+  const myobj = [
+    { name: "Rayhan", age: 28 },
+    { name: "Asif", age: 27 },
+    { name: "Tuhin", age: 26 },
+    { name: "Touhid", age: 25 },
+  ];
   return (
     <div>
-      <Print name="Parvez"></Print>
-      <Print name="Rayhan"></Print>
+      {/* {arrName.map((key) => (
+        <Print key={key} name={key}></Print>
+      ))} */}
+
+      {myobj.map((item) => {
+        return <Print name={item.name} age={item.age}></Print>;
+      })}
     </div>
   );
 }
@@ -14,7 +25,8 @@ function App() {
 function Print(props) {
   return (
     <div className="myclass">
-      <h1>{props.name}</h1>
+      <p>Name : {props.name}</p>
+      <p>Age : {props.age}</p>
     </div>
   );
 }
