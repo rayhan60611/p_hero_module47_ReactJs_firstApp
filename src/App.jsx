@@ -11,7 +11,7 @@ function App() {
 
 function UserPrint(props) {
   return (
-    <div style={{ border: "2px solid red", margin: "5px" }}>
+    <div style={{ border: "2px solid red", margin: "5px", padding: "10px" }}>
       <h3>{props.name}</h3>
       <h4>{props.email}</h4>
     </div>
